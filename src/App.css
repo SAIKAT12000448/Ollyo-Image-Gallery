@@ -27,6 +27,36 @@
 .App-link {
   color: #61dafb;
 }
+.image-container {
+  position: relative;
+}
+
+.image-overlay {
+
+  width: 100%;
+  height: 100%; 
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  opacity: 01; /* Initially, the overlay is transparent */
+  transition: opacity 0.3s;
+}
+
+.image-container:hover .image-overlay {
+  opacity: 0.3 
+ 
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dragging-image {
+  background-color: black;
+}
+
 
 @keyframes App-logo-spin {
   from {
@@ -35,4 +65,37 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Media queries for responsive design */
+@media screen and (min-width: 576px) {
+  /* Styles for screens at least 576px wide */
+  .image-container {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* Styles for screens at least 768px wide */
+  .image-container {
+    width: 80%;
+  }
+  .image-container img{
+    width: "300px";
+  }
+}
+
+@media screen and (min-width: 992px) {
+  /* Styles for screens at least 992px wide */
+  .image-container {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* Styles for screens at least 1200px wide */
+  .image-container {
+    width: 100%;
+  }
+  
 }
