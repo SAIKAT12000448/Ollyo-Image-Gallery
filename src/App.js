@@ -119,7 +119,7 @@ const App = () => {
         }}
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
       >
-        <div className="flex justify-between col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5">
+        <div className="sm:flex sm:justify-between col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5">
 
 
           <p className="text-bold text-2xl"> {selectedItems.length} Files selected</p>
@@ -181,7 +181,7 @@ const App = () => {
 
 {/* add image */}
 
-        <div className="image-upload-box flex flex-col content-center	items-center">
+        <div className="image-upload-box flex flex-col content-center items-center">
           <input
             type="file"
             accept="image/*"
