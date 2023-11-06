@@ -49,8 +49,17 @@ const App = () => {
     dragItem.current = item;
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/plain", item);
-    
+    const imageElement = e.currentTarget.querySelector("img");
+    imageElement.style.opacity = 0;
   };
+
+  const handleDragEnd = (e) => {
+    // Remove the "dragging-image" class to show the image again
+    const imageElement = e.currentTarget.querySelector("img");
+    imageElement.style.opacity = 1;
+    e.currentTarget.classList.remove("dragging-image");
+  };
+  
   
 
   const handleDragOver = (e) => {
@@ -98,7 +107,7 @@ const App = () => {
 
   return (
     <div>
-      {/* <h1>Drag and Drop Images</h1> */}
+      <h1 className="text-bold text-2xl text-center">Images Gallery</h1>
 
       <div
         style={{
@@ -111,14 +120,16 @@ const App = () => {
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
       >
         <div className="flex justify-between col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5">
-          <p className="text-bold"> {selectedItems.length} Files selected</p>
 
+
+          <p className="text-bold text-2xl"> {selectedItems.length} Files selected</p>
           <button
-            className="text-bold text-red-800"
+            className="text-bold text-red-800 hover:underline"
             onClick={deleteSelectedImages}
           >
             Delete Files
           </button>
+          
         </div>
         {listImage.map((image, index) => {
           const isSelected = selectedItems.includes(image);
@@ -131,6 +142,7 @@ const App = () => {
               key={index}
               onDragStart={(e) => handleDragStart(e, image)}
               onDragOver={handleDragOver}
+              onDragEnd={handleDragEnd}
               onDrop={(e) => handleDrop(e, image)}
               draggable
               style={{
@@ -158,7 +170,7 @@ const App = () => {
                   <i className="far fa-circle"></i>
                 )}
               </button>
-                <div style={{ width: "100%" }} className="image-overlay border">
+                <div style={{ width: "100%" }} className="image-overlay border "draggable="false">
                 <img style={{ width: "100%" }} src={image} alt="" />
               </div>
             </div>
