@@ -2,33 +2,12 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
 .image-container {
   position: relative;
+ 
 }
 
 .image-overlay {
@@ -39,12 +18,14 @@
   background-color: white;
   justify-content: center;
   align-items: center;
-  opacity: 01; /* Initially, the overlay is transparent */
+  opacity: 01; 
   transition: opacity 0.3s;
+  
 }
 
 .image-container:hover .image-overlay {
-  opacity: 0.3 
+  opacity: 0.3 ;
+  cursor: pointer;
  
 }
 
@@ -52,31 +33,45 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+ 
 }
 .dragging-image {
-  background-color: black;
+  background-color: rgb(37, 36, 36);
+
+}
+
+.selection-button {
+  visibility: hidden;
+}
+.selection-button.selected {
+  visibility: visible;
+  
+}
+.image-container:hover .selection-button {
+  visibility: visible;
+}
+
+.image-upload-box {
+  border: 3px dashed #ccc;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
 }
 
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+
 
 /* Media queries for responsive design */
 @media screen and (min-width: 576px) {
-  /* Styles for screens at least 576px wide */
+  
   .image-container {
     width: 80%;
   }
 }
 
 @media screen and (min-width: 768px) {
-  /* Styles for screens at least 768px wide */
+  
   .image-container {
     width: 80%;
   }
@@ -86,16 +81,16 @@
 }
 
 @media screen and (min-width: 992px) {
-  /* Styles for screens at least 992px wide */
+ 
   .image-container {
     width: 80%;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  /* Styles for screens at least 1200px wide */
+  
   .image-container {
     width: 100%;
-  }
+  } 
   
 }
