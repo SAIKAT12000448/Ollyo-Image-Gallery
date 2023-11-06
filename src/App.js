@@ -45,6 +45,49 @@ const App = () => {
   };
 
 
+
+  const handleTouchStart = (e, item) => {
+    dragItem.current = item;
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", item);
+    const imageElement = e.currentTarget.querySelector("img");
+    imageElement.style.opacity = 0;
+  };
+
+  const handleTouchEnd = (e) => {
+    const imageElement = e.currentTarget.querySelector("img");
+    imageElement.style.opacity = 1;
+    e.currentTarget.classList.remove("dragging-image");
+  };
+
+  const handleTouchMove = (e) => {
+    e.preventDefault();
+  };
+
+  const handleTouchDrop = (e, targetImage) => {
+    e.preventDefault();
+    const dragIndex = listImage.indexOf(dragItem.current);
+    const dropIndex = listImage.indexOf(targetImage);
+
+    if (dragIndex !== -1 && dropIndex !== -1) {
+      const newList = [...listImage];
+      newList[dragIndex] = listImage[dropIndex];
+      newList[dropIndex] = dragItem.current;
+      setListImage(newList);
+    }
+  };
+
+
+
+
+
+
+
+
+
+
+
+
   const handleDragStart = (e, item) => {
     dragItem.current = item;
     e.dataTransfer.effectAllowed = "move";
@@ -144,6 +187,13 @@ const App = () => {
               onDragOver={handleDragOver}
               onDragEnd={handleDragEnd}
               onDrop={(e) => handleDrop(e, image)}
+
+              onTouchStart={(e) => handleTouchStart(e, image)}
+              onTouchEnd={handleTouchEnd}
+              onTouchMove={handleTouchMove}
+              onTouchCancel={handleTouchEnd}
+              onTouchDrop={(e) => handleTouchDrop(e, image)}
+
               draggable
               style={{
                 gridColumn: index < 1 ? "span 2" : "auto",
